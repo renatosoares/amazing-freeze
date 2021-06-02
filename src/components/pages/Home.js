@@ -22,49 +22,54 @@ import Accordion, { AccordionGroup } from "components/atoms/Accordion";
 
 import CameraVideo from "assets/camera.mp4";
 
+const getFirstHighlightPost = async () => {
+  let highlightPost = {};
+  const myHeaders = new Headers();
+
+  const myInit = {
+    method: "GET",
+    headers: myHeaders,
+    mode: "cors",
+    cache: "default",
+  };
+
+  const myRequest = new Request(
+    "//canindesoares.com/wp-json/wp/v2/posts/?categories=1&per_page=1",
+    myInit
+  );
+
+  highlightPost = await fetch(myRequest)
+    .then((response) => response.json())
+    .then((data) => data.pop());
+
+  return highlightPost;
+};
+
+const getMediaById = async (id) => {
+  const media = await fetch(`//canindesoares.com/wp-json/wp/v2/media/${id}`)
+    .then((response) => response.json())
+    .then((data) => data);
+
+  return media;
+};
+
 const Home = ({ products }) => {
   const [highlightPost, setHighlightPost] = useState({});
-  const [highlightImage, setHighlightImage] = useState("");
+  const [highlightMedia, setHighlightMedia] = useState({ source_url: "" });
 
-  useEffect(() => {
-    const myHeaders = new Headers();
-
-    const myInit = {
-      method: "GET",
-      headers: myHeaders,
-      mode: "cors",
-      cache: "default",
-    };
-
-    const myRequest = new Request(
-      "//canindesoares.com/wp-json/wp/v2/posts/?categories=1&per_page=1",
-      myInit
-    );
-
-    fetch(myRequest)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("fetch post", data);
-        setHighlightPost(data.pop());
-      });
+  useEffect(async () => {
+    setHighlightPost(await getFirstHighlightPost());
   }, []);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (Object.entries(highlightPost).length > 0) {
-      fetch(
-        `//canindesoares.com/wp-json/wp/v2/media/${highlightPost.featured_media}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("fetch media", data);
-          setHighlightImage(data);
-        });
+      setHighlightMedia(await getMediaById(highlightPost.featured_media));
     }
   }, [highlightPost]);
 
   return (
     <>
-      <Hero image={highlightImage.source_url}>
+      <Hero image={highlightMedia.source_url}>
         <Heading>
           <h1>
             Dolor sit amet <strong>consectetur</strong>
