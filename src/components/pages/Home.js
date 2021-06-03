@@ -53,17 +53,39 @@ const getMediaById = async (id) => {
   return media;
 };
 
-const Home = ({ products }) => {
-  const [highlightPost, setHighlightPost] = useState({});
-  const [highlightMedia, setHighlightMedia] = useState({ source_url: "" });
+const loadPosts = async () => {
+  const postsResponse = fetch();
+  const mediaResponse = fetch();
 
-  useEffect(async () => {
-    setHighlightPost(await getFirstHighlightPost());
+  const [posts, media] = await Promise.all([postsResponse, mediaResponse]);
+
+  const postsJson = await posts.json();
+  const mediaJson = await media.json();
+};
+
+const Home = ({ products }) => {
+  const [highlightPost, setHighlightPost] = useState({
+    title: { rendered: "" },
+    excerpt: { rendered: "" },
+  });
+  const [highlightMedia, setHighlightMedia] = useState({ source_url: "" });
+  const [highlightPosts, setHighlightPosts] = useState({});
+
+  useEffect(() => {
+    const fetchDataPost = async () => {
+      setHighlightPost(await getFirstHighlightPost());
+    };
+
+    fetchDataPost();
   }, []);
 
-  useEffect(async () => {
-    if (Object.entries(highlightPost).length > 0) {
+  useEffect(() => {
+    const fetchDataMedia = async () => {
       setHighlightMedia(await getMediaById(highlightPost.featured_media));
+    };
+
+    if (Object.entries(highlightPost).length > 0) {
+      fetchDataMedia();
     }
   }, [highlightPost]);
 
@@ -71,19 +93,10 @@ const Home = ({ products }) => {
     <>
       <Hero image={highlightMedia.source_url}>
         <Heading>
-          <h1>
-            Dolor sit amet <strong>consectetur</strong>
-            <br />
-            adipisicing elitit
-          </h1>
+          <h1>{highlightPost.title.rendered}</h1>
         </Heading>
-        <ul>
-          <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-          <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-        </ul>
         <Button color="primary" variant="outlined">
-          Mostre-se agora
+          Ver postagem
         </Button>
       </Hero>
       <Section>
