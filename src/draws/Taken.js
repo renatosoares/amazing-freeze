@@ -8,7 +8,7 @@ function SvgTaken(props) {
       width="1em"
       height="1em"
       viewBox="0 0 672.532 738.394"
-      aria-aria-labelledby="takenImgTitle"
+      aria-labelledby="takenImgTitle"
       role="img"
       {...props}
     >
