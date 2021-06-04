@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import HomePage from "components/pages/Home";
 
-import { useProducts } from "hooks/products";
+// import { useProducts } from "hooks/products";
+import { getPosts } from "hooks/posts";
 
 const Home = () => {
-  const products = useProducts();
+  const [posts, setPosts] = useState([
+    {
+      id: 0,
+      title: "",
+      slang: "",
+      summary: "",
+      image: "",
+    },
+  ]);
 
-  return <HomePage products={products} />;
+  useEffect(() => {
+    const setPostsResult = async () => {
+      setPosts(await getPosts());
+    };
+
+    setPostsResult();
+  }, []);
+
+  return <HomePage products={posts} />;
 };
 
 export default Home;

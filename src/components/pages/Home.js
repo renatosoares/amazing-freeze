@@ -53,23 +53,14 @@ const getMediaById = async (id) => {
   return media;
 };
 
-const loadPosts = async () => {
-  const postsResponse = fetch();
-  const mediaResponse = fetch();
-
-  const [posts, media] = await Promise.all([postsResponse, mediaResponse]);
-
-  const postsJson = await posts.json();
-  const mediaJson = await media.json();
-};
-
 const Home = ({ products }) => {
   const [highlightPost, setHighlightPost] = useState({
     title: { rendered: "" },
     excerpt: { rendered: "" },
   });
-  const [highlightMedia, setHighlightMedia] = useState({ source_url: "" });
-  const [highlightPosts, setHighlightPosts] = useState({});
+  const [highlightMedia, setHighlightMedia] = useState({
+    source_url: "",
+  });
 
   useEffect(() => {
     const fetchDataPost = async () => {
@@ -89,9 +80,12 @@ const Home = ({ products }) => {
     }
   }, [highlightPost]);
 
+  let imageHero =
+    highlightMedia.source_url || `//via.placeholder.com/136x76.png?text=...`;
+
   return (
     <>
-      <Hero image={highlightMedia.source_url}>
+      <Hero image={imageHero}>
         <Heading>
           <h1>{highlightPost.title.rendered}</h1>
         </Heading>
@@ -120,7 +114,7 @@ const Home = ({ products }) => {
       </Section>
       <Section inverse>
         <Heading>
-          <h2>Conheça nossos serviços</h2>
+          <h2>Destaques</h2>
         </Heading>
         <ProductGrid products={products} />
       </Section>
