@@ -75,7 +75,7 @@ const Home = ({ products }) => {
       setHighlightMedia(await getMediaById(highlightPost.featured_media));
     };
 
-    if (Object.entries(highlightPost).length > 0) {
+    if (Object.entries(highlightPost).length > 2) {
       fetchDataMedia();
     }
   }, [highlightPost]);
