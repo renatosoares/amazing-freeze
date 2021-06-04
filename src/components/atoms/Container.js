@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { breakAt, BreakpointSizes } from "styles/Breakpoints";
@@ -16,9 +15,5 @@ const Container = styled.div`
     margin: 0 auto;
   }
 `;
-
-Container.defaultProps = {};
-
-Container.propTypes = {};
 
 export default Container;

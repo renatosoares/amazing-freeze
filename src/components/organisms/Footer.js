@@ -70,7 +70,7 @@ const Footer = () => (
             assumenda accusamus voluptatum sint nemo vel voluptates
           </p>
         </div>
-        <d iv>
+        <div>
           <Heading>
             <h6>Redes sociais</h6>
           </Heading>
@@ -98,7 +98,7 @@ const Footer = () => (
               Twitter
             </FooterLink>
           </p>
-        </d>
+        </div>
       </Grid>
     </Container>
   </Root>
