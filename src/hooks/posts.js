@@ -20,6 +20,7 @@ export const getPosts = async () => {
       slang: post.slug,
       summary: post.excerpt.rendered,
       image: "",
+      mediaId: post.featured_media,
     };
   });
 

@@ -62,6 +62,8 @@ const Home = ({ products }) => {
     source_url: "",
   });
 
+  const [highlightPosts, setHighlightPosts] = useState([]);
+
   useEffect(() => {
     const fetchDataPost = async () => {
       setHighlightPost(await getFirstHighlightPost());
@@ -79,6 +81,21 @@ const Home = ({ products }) => {
       fetchDataMedia();
     }
   }, [highlightPost]);
+
+  useEffect(() => {
+    console.log("teste user", products);
+    let highlights = [];
+    if (products[0].id > 0) {
+      products.forEach(async (post) => {
+        const media = await getMediaById(post.mediaId);
+
+        highlights.push({ ...post, image: media.source_url });
+      });
+      setTimeout(() => {
+        setHighlightPosts(highlights);
+      }, 500);
+    }
+  }, [products]);
 
   let imageHero =
     highlightMedia.source_url || `//via.placeholder.com/136x76.png?text=...`;
@@ -116,7 +133,7 @@ const Home = ({ products }) => {
         <Heading>
           <h2>Destaques</h2>
         </Heading>
-        <ProductGrid products={products} />
+        <ProductGrid products={highlightPosts} />
       </Section>
       <Section>
         <Grid md={2}>

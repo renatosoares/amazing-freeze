@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import HomePage from "components/pages/Home";
 
-// import { useProducts } from "hooks/products";
 import { getPosts } from "hooks/posts";
 
 const Home = () => {
@@ -13,6 +12,7 @@ const Home = () => {
       slang: "",
       summary: "",
       image: "",
+      mediaId: 0,
     },
   ]);
 
