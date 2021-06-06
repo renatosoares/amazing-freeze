@@ -20,8 +20,6 @@ import Footer from "components/organisms/Footer";
 import ProductGrid from "components/organisms/ProductGrid";
 import Accordion, { AccordionGroup } from "components/atoms/Accordion";
 
-import CameraVideo from "assets/camera.mp4";
-
 const getFirstHighlightPost = async () => {
   let highlightPost = {};
   const myHeaders = new Headers();
@@ -83,7 +81,6 @@ const Home = ({ products }) => {
   }, [highlightPost]);
 
   useEffect(() => {
-    console.log("teste user", products);
     let highlights = [];
     if (products[0].id > 0) {
       products.forEach(async (post) => {
@@ -139,7 +136,7 @@ const Home = ({ products }) => {
         <Grid md={2}>
           <div>
             <Heading>
-              <h2>Photography auto click</h2>
+              <h2>4 décadas de profissionalismo</h2>
             </Heading>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
@@ -153,14 +150,15 @@ const Home = ({ products }) => {
             </div>
           </div>
           <div>
-            <video
-              src={CameraVideo}
+            <iframe
               width="100%"
-              autoPlay
-              playsInline
-              loop
-              muted
-            />
+              height="100%"
+              src="https://www.youtube.com/embed/YWEuMe72ywM"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
         </Grid>
       </Section>
