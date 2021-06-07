@@ -5,28 +5,20 @@ import styled, { css } from "styled-components";
 import Container from "components/atoms/Container";
 
 const Root = styled.div`
+  background-blend-mode: color;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.4);
-
-  height: 100vw;
+  height: 100vh;
 
   ${(props) => css`
-    background-image: url(${props.image});
-    background-size: contain;
+    background: url(${props.image}),
+      linear-gradient(180deg, rgb(21 18 6 / 69%) 0%, rgb(251 255 0 / 1%) 100%);
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
   `}
 `;
 
 const Content = styled.div`
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    180deg,
-    rgb(21 18 6 / 69%) 0%,
-    rgb(80 63 13 / 68%) 35%,
-    rgb(251 255 0 / 2%) 100%
-  );
-
   display: inline-block;
   p,
   li {
