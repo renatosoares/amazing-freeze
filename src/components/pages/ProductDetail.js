@@ -52,24 +52,7 @@ const ProductDetail = ({ product }) => (
       />
     </Hero>
     <Section>
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis
-        dicta veniam, iure ipsum architecto ipsam facilis dolore provident optio
-        commodi, porro enim cum, recusandae nisi laboriosam esse expedita nam
-        cupiditate?
-      </p>
-      <p>
-        Eum deserunt magnam quidem tenetur quod! Dolorum itaque neque ut
-        consectetur, ipsum tempora ea odit quibusdam natus nulla accusamus quo,
-        aliquam asperiores qui id laborum? Voluptas totam exercitationem esse
-        voluptatum.
-      </p>
-      <p>
-        Repudiandae eum, beatae non earum dolores doloremque, fugit unde quos
-        consequuntur atque sequi eligendi distinctio nobis! Commodi, enim,
-        expedita, nulla similique sed aliquid maiores saepe nisi facilis odit
-        beatae repellendus.
-      </p>
+      <div dangerouslySetInnerHTML={{ __html: product.summary }}></div>
       <h5>Necessary documents:</h5>
       <PinnedList>
         <PinnedItem>

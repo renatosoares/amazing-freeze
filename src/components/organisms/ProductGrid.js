@@ -30,7 +30,10 @@ const ProductGrid = ({ products }) => {
                 <Heading>
                   <h6>{product.title}</h6>
                 </Heading>
-                <p>{product.summary}</p>
+
+                <div
+                  dangerouslySetInnerHTML={{ __html: product.summary }}
+                ></div>
                 <div>
                   <Button
                     color="primary"

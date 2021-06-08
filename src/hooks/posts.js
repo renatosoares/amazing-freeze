@@ -1,7 +1,7 @@
+const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
+
 export const highlightPosts = async () => {
-  const postsResponse = fetch(
-    "//canindesoares.com/wp-json/wp/v2/posts/?categories=1"
-  );
+  const postsResponse = fetch(`${BASE_URI}posts/?categories=1`);
 
   const [posts] = await Promise.all([postsResponse]);
 
@@ -25,4 +25,11 @@ export const getPosts = async () => {
   });
 
   return posts;
+};
+
+export const usePost = async ({ slang }) => {
+  const post = await fetch(`${BASE_URI}posts/?slug=${slang}`)
+    .then((response) => response.json())
+    .then((data) => data.pop());
+  return post;
 };

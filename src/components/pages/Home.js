@@ -20,6 +20,8 @@ import Footer from "components/organisms/Footer";
 import ProductGrid from "components/organisms/ProductGrid";
 import Accordion, { AccordionGroup } from "components/atoms/Accordion";
 
+const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
+
 const getFirstHighlightPost = async () => {
   let highlightPost = {};
   const myHeaders = new Headers();
@@ -32,7 +34,7 @@ const getFirstHighlightPost = async () => {
   };
 
   const myRequest = new Request(
-    "//canindesoares.com/wp-json/wp/v2/posts/?categories=1&per_page=1",
+    `${BASE_URI}posts/?categories=1&per_page=1`,
     myInit
   );
 
@@ -44,7 +46,7 @@ const getFirstHighlightPost = async () => {
 };
 
 const getMediaById = async (id) => {
-  const media = await fetch(`//canindesoares.com/wp-json/wp/v2/media/${id}`)
+  const media = await fetch(`${BASE_URI}media/${id}`)
     .then((response) => response.json())
     .then((data) => data);
 
