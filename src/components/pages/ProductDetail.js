@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FaIdCard, FaHome, FaScroll } from "react-icons/fa";
 
@@ -15,7 +15,6 @@ import Callout, {
 } from "components/atoms/Callout";
 import Button from "components/atoms/Button";
 
-import BirdImage from "assets/bg-bird.jpg";
 import TeachingImage from "draws/Teaching";
 import BreadCrumb from "components/atoms/BreadCrumb";
 
@@ -37,64 +36,92 @@ const PinnedItem = styled.li`
   }
 `;
 
-const ProductDetail = ({ product }) => (
-  <>
-    <Hero image={BirdImage}>
-      <Heading>
-        <h1>{product.title}</h1>
-      </Heading>
-      <BreadCrumb
-        items={[
-          { label: "Home", link: "/" },
-          { label: "Services" },
-          { label: product.title },
-        ]}
-      />
-    </Hero>
-    <Section>
-      <div dangerouslySetInnerHTML={{ __html: product.summary }}></div>
-      <h5>Necessary documents:</h5>
-      <PinnedList>
-        <PinnedItem>
-          <FaIdCard />
-          Lorem ipsum
-        </PinnedItem>
-        <PinnedItem>
-          <FaIdCard />
-          Amet consectetur
-        </PinnedItem>
-        <PinnedItem>
-          <FaScroll />
-          Numquam dignissimos sequi
-        </PinnedItem>
-        <PinnedItem>
-          <FaHome />
-          perspiciatis porro
-        </PinnedItem>
-      </PinnedList>
-    </Section>
-    <Section inverse>
-      <Callout>
-        <CalloutBody>
-          <h6>Make your registration right now!</h6>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe
-            animi numquam dignissimos sequi ex accusantium magnam voluptatum
-            deserunt pariatur iusto cum delectus, enim unde cupiditate
-            perspiciatis porro amet, facere nemo.
-          </p>
-          <CalloutActions>
-            <Button color="primary">Matriculate</Button>
-          </CalloutActions>
-        </CalloutBody>
-        <CalloutMedia>
-          <TeachingImage />
-        </CalloutMedia>
-      </Callout>
-    </Section>
-    <Footer />
-  </>
-);
+const ContentDetail = styled.div`
+  text-align: center;
+
+  figure.wp-block-image {
+    [class^="wp-image"] {
+      border: 24px solid white;
+      box-shadow: rgba(0 0 0 / 30%) 7px 7px 17px 0px;
+      height: auto;
+      width: 80%;
+    }
+  }
+`;
+
+const ProductDetail = ({ product }) => {
+  const [highlightImage, setHighlightImage] = useState("");
+  useEffect(() => {
+    const elBlockImageWpImage = document.querySelector(
+      ".wp-block-image > img[class^=wp-image]"
+    );
+
+    if (elBlockImageWpImage) {
+      setHighlightImage(elBlockImageWpImage.getAttribute("src"));
+    }
+  }, [product.summary]);
+
+  return (
+    <>
+      <Hero image={highlightImage}>
+        <Heading>
+          <h1>{product.title}</h1>
+        </Heading>
+        <BreadCrumb
+          items={[
+            { label: "Home", link: "/" },
+            { label: "Services" },
+            { label: product.title },
+          ]}
+        />
+      </Hero>
+      <Section>
+        <ContentDetail
+          dangerouslySetInnerHTML={{ __html: product.summary }}
+        ></ContentDetail>
+        <h5>Necessary documents:</h5>
+        <PinnedList>
+          <PinnedItem>
+            <FaIdCard />
+            Lorem ipsum
+          </PinnedItem>
+          <PinnedItem>
+            <FaIdCard />
+            Amet consectetur
+          </PinnedItem>
+          <PinnedItem>
+            <FaScroll />
+            Numquam dignissimos sequi
+          </PinnedItem>
+          <PinnedItem>
+            <FaHome />
+            perspiciatis porro
+          </PinnedItem>
+        </PinnedList>
+      </Section>
+      <Section inverse>
+        <Callout>
+          <CalloutBody>
+            <h6>Make your registration right now!</h6>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe
+              animi numquam dignissimos sequi ex accusantium magnam voluptatum
+              deserunt pariatur iusto cum delectus, enim unde cupiditate
+              perspiciatis porro amet, facere nemo.
+            </p>
+            <CalloutActions>
+              <Button color="primary">Matriculate</Button>
+            </CalloutActions>
+          </CalloutBody>
+          <CalloutMedia>
+            <TeachingImage />
+          </CalloutMedia>
+        </Callout>
+      </Section>
+      <Footer />
+    </>
+  );
+};
 
 ProductDetail.defaultProps = {};
 
