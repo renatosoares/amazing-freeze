@@ -37,14 +37,40 @@ const PinnedItem = styled.li`
 `;
 
 const ContentDetail = styled.div`
-  text-align: center;
+  text-align: justify;
 
   figure.wp-block-image {
+    text-align: center;
+
     [class^="wp-image"] {
       border: 24px solid white;
       box-shadow: rgba(0 0 0 / 30%) 7px 7px 17px 0px;
       height: auto;
       width: 80%;
+    }
+  }
+
+  figure.wp-block-gallery {
+    margin: 0;
+    text-align: center;
+
+    .blocks-gallery-grid {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+      .blocks-gallery-item {
+        figure {
+          margin: 0;
+
+          [class^="wp-image"] {
+            max-width: 300px;
+          }
+        }
+      }
     }
   }
 `;
