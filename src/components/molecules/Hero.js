@@ -5,17 +5,26 @@ import styled, { css } from "styled-components";
 import Container from "components/atoms/Container";
 
 const Root = styled.div`
-  background-blend-mode: color;
+  background-blend-mode: color, normal;
   color: #fff;
   height: 100vh;
+  width: 100%;
 
   ${(props) => css`
     background: url(${props.image}),
-      linear-gradient(180deg, rgb(21 18 6 / 69%) 0%, rgb(251 255 0 / 1%) 100%);
+      linear-gradient(180deg, rgb(21 18 6) 0%, rgb(251 255 0 / 1%) 100%);
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
   `}
+`;
+
+const FilterBlur = styled.div`
+  animation: changeWidth 8s ease-in-out infinite;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border-right: 1px solid whitesmoke;
+  height: 100vh;
 `;
 
 const Content = styled.div`
@@ -41,9 +50,11 @@ const Content = styled.div`
 
 const Hero = ({ image, children }) => (
   <Root image={image} data-testid="hero">
-    <Container>
-      <Content>{children}</Content>
-    </Container>
+    <FilterBlur>
+      <Container>
+        <Content>{children}</Content>
+      </Container>
+    </FilterBlur>
   </Root>
 );
 
