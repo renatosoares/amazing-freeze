@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import {
   FaChargingStation,
   FaCameraRetro,
@@ -19,6 +20,15 @@ import Section from "components/molecules/Section";
 import Footer from "components/organisms/Footer";
 import ProductGrid from "components/organisms/ProductGrid";
 import Accordion, { AccordionGroup } from "components/atoms/Accordion";
+import { breakAt, BreakpointSizes } from "styles/Breakpoints";
+
+const HeaderTitle = styled.h1`
+  text-align: left;
+
+  ${breakAt(BreakpointSizes.lg)} {
+    font-size: 1.5rem;
+  }
+`;
 
 const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
 
@@ -103,11 +113,8 @@ const Home = ({ products }) => {
     <>
       <Hero image={imageHero}>
         <Heading>
-          <h1>{highlightPost.title.rendered}</h1>
+          <HeaderTitle>{highlightPost.title.rendered}</HeaderTitle>
         </Heading>
-        <Button color="primary" variant="outlined">
-          Ver postagem
-        </Button>
       </Hero>
       <Section>
         <Grid sm={2} md={4}>
