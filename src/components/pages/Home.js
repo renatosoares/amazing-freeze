@@ -24,6 +24,7 @@ import { breakAt, BreakpointSizes } from "styles/Breakpoints";
 
 const HeaderTitle = styled.h1`
   text-align: left;
+  font-size: 1rem;
 
   ${breakAt(BreakpointSizes.lg)} {
     font-size: 1.5rem;

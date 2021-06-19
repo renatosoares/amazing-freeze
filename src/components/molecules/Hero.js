@@ -43,8 +43,6 @@ const HighlightMedia = styled.div`
     width: 100%;
 
     ${breakAt(BreakpointSizes.lg)} {
-      height: 100%;
-      width: auto;
       border-width: 24px;
     }
   }
