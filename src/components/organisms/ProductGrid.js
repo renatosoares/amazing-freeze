@@ -28,7 +28,7 @@ const ProductGrid = ({ products }) => {
               <CardMedia image={product.image} />
               <CardBody>
                 <Heading>
-                  <h6>{product.title}</h6>
+                  <h6 dangerouslySetInnerHTML={{ __html: product.title }}></h6>
                 </Heading>
 
                 <div
