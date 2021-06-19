@@ -55,10 +55,18 @@ const getFirstHighlightPost = async () => {
   return highlightPost;
 };
 
-const getMediaById = async (id) => {
-  const media = await fetch(`${BASE_URI}media/${id}`)
+const getMediaById = async (id, postId = 0) => {
+  const uriMedia = "media";
+  const uriMediaParent = "media?parent=";
+  let fetchUri = `${BASE_URI}${uriMedia}/${id}`;
+
+  if (id === 0) {
+    fetchUri = `${BASE_URI}${uriMediaParent}${postId}`;
+  }
+
+  const media = await fetch(fetchUri)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => (id > 0 ? data : data.pop()));
 
   return media;
 };
@@ -84,7 +92,9 @@ const Home = ({ products }) => {
 
   useEffect(() => {
     const fetchDataMedia = async () => {
-      setHighlightMedia(await getMediaById(highlightPost.featured_media));
+      setHighlightMedia(
+        await getMediaById(highlightPost.featured_media, highlightPost.id)
+      );
     };
 
     if (Object.entries(highlightPost).length > 2) {
@@ -96,7 +106,7 @@ const Home = ({ products }) => {
     let highlights = [];
     if (products[0].id > 0) {
       products.forEach(async (post) => {
-        const media = await getMediaById(post.mediaId);
+        const media = await getMediaById(post.mediaId, post.id);
 
         highlights.push({ ...post, image: media.source_url });
       });
