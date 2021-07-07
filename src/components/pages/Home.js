@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import {
   FaChargingStation,
   FaCameraRetro,
@@ -19,6 +20,16 @@ import Section from "components/molecules/Section";
 import Footer from "components/organisms/Footer";
 import ProductGrid from "components/organisms/ProductGrid";
 import Accordion, { AccordionGroup } from "components/atoms/Accordion";
+import { breakAt, BreakpointSizes } from "styles/Breakpoints";
+
+const HeaderTitle = styled.h1`
+  text-align: left;
+  font-size: 1rem;
+
+  ${breakAt(BreakpointSizes.lg)} {
+    font-size: 1.5rem;
+  }
+`;
 
 const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
 
@@ -45,10 +56,18 @@ const getFirstHighlightPost = async () => {
   return highlightPost;
 };
 
-const getMediaById = async (id) => {
-  const media = await fetch(`${BASE_URI}media/${id}`)
+const getMediaById = async (id, postId = 0) => {
+  const uriMedia = "media";
+  const uriMediaParent = "media?parent=";
+  let fetchUri = `${BASE_URI}${uriMedia}/${id}`;
+
+  if (id === 0) {
+    fetchUri = `${BASE_URI}${uriMediaParent}${postId}`;
+  }
+
+  const media = await fetch(fetchUri)
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => (id > 0 ? data : data.pop()));
 
   return media;
 };
@@ -74,7 +93,9 @@ const Home = ({ products }) => {
 
   useEffect(() => {
     const fetchDataMedia = async () => {
-      setHighlightMedia(await getMediaById(highlightPost.featured_media));
+      setHighlightMedia(
+        await getMediaById(highlightPost.featured_media, highlightPost.id)
+      );
     };
 
     if (Object.entries(highlightPost).length > 2) {
@@ -86,7 +107,7 @@ const Home = ({ products }) => {
     let highlights = [];
     if (products[0].id > 0) {
       products.forEach(async (post) => {
-        const media = await getMediaById(post.mediaId);
+        const media = await getMediaById(post.mediaId, post.id);
 
         highlights.push({ ...post, image: media.source_url });
       });
@@ -103,11 +124,8 @@ const Home = ({ products }) => {
     <>
       <Hero image={imageHero}>
         <Heading>
-          <h1>{highlightPost.title.rendered}</h1>
+          <HeaderTitle>{highlightPost.title.rendered}</HeaderTitle>
         </Heading>
-        <Button color="primary" variant="outlined">
-          Ver postagem
-        </Button>
       </Hero>
       <Section>
         <Grid sm={2} md={4}>

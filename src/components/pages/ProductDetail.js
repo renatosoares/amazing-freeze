@@ -17,6 +17,7 @@ import Button from "components/atoms/Button";
 
 import TeachingImage from "draws/Teaching";
 import BreadCrumb from "components/atoms/BreadCrumb";
+import { breakAt, BreakpointSizes } from "styles/Breakpoints";
 
 const PinnedList = styled.ul`
   list-style: none;
@@ -43,10 +44,14 @@ const ContentDetail = styled.div`
     text-align: center;
 
     [class^="wp-image"] {
-      border: 24px solid white;
+      border: 8px solid rgb(255 255 255 / 11%);
       box-shadow: rgba(0 0 0 / 30%) 7px 7px 17px 0px;
       height: auto;
-      width: 80%;
+      width: 100%;
+
+      ${breakAt(BreakpointSizes.lg)} {
+        width: 80%;
+      }
     }
   }
 
@@ -90,9 +95,6 @@ const ProductDetail = ({ product }) => {
   return (
     <>
       <Hero image={highlightImage}>
-        <Heading>
-          <h1>{product.title}</h1>
-        </Heading>
         <BreadCrumb
           items={[
             { label: "Home", link: "/" },
