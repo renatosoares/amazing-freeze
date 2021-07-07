@@ -1,63 +1,31 @@
 {
   "name": "amazing-freeze",
-  "version": "0.4.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-docs": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/addon-viewport": "^6.2.9",
-    "@storybook/node-logger": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9",
-    "@svgr/cli": "^5.5.0",
-    "@testing-library/jest-dom": "^5.12.0",
+    "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^13.1.8",
-    "chromatic": "^5.8.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "faker": "^5.5.3",
-    "history": "^5.0.0",
-    "jest-styled-components": "^7.0.4",
-    "prettier": "^2.2.1",
-    "prop-types": "^15.7.2",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.2.0",
-    "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "4.0.3",
-    "styled-components": "^5.2.1",
+    "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "cover": "yarn test --coverage --watchAll=false",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "chromatic": "chromatic --exit-zero-on-changes",
-    "lint": "eslint src/**/*.js",
-    "svg": "svgr --icon --replace-attr-values '#ffc107=currentColor' -d src/draws/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:react-hooks/recommended"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!src/**/*.stories.js",
-      "!src/serviceWorker.js",
-      "!src/reportWebVitals.js",
-      "!src/index.js"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -71,9 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {},
-  "resolutions": {
-    "@storybook/react/babel-loader": "8.1.0"
   }
 }
