@@ -1,12 +1,16 @@
-import React from 'react';
-import ThemeProvider from 'styles/ThemeProvider';
-import './App.css';
+import React from "react";
+
+import "./App.scss";
+
+import Hero from "components/molecules/Hero";
 
 function App() {
   return (
-    <ThemeProvider>
-      <h1>Hello world!</h1>
-    </ThemeProvider>
+    <>
+      <Hero image="//picsum.photos/seed/77/1024/600">
+        <h1>Hello world!</h1>
+      </Hero>
+    </>
   );
 }
 
