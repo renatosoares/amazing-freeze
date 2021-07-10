@@ -1,16 +1,14 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "routes";
 
 import "./App.scss";
 
-import Hero from "components/molecules/Hero";
-
 function App() {
   return (
-    <>
-      <Hero image="//picsum.photos/seed/77/1024/600">
-        <h1>Hello world!</h1>
-      </Hero>
-    </>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
 
