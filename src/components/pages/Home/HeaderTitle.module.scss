@@ -1,8 +1,10 @@
+@use "styles/libraries/bootstrap/variables";
+
 .headerTitle {
   text-align: left;
   font-size: 1rem;
 
-  @media (min-width: 992px) {
+  @media (min-width: #{map-get(variables.$grid-breakpoints, lg)}) {
     font-size: 1.5rem;
   }
 }
