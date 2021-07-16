@@ -20,3 +20,26 @@ export const usePost = async ({ slang }: PostsUsePostProps) => {
     .then((data) => data.pop());
   return post;
 };
+
+export const getFirstHighlightPost = async () => {
+  let highlightPost = {};
+  const myHeaders = new Headers();
+
+  const myInit: RequestInit = {
+    method: "GET",
+    headers: myHeaders,
+    mode: "cors",
+    cache: "default",
+  };
+
+  const myRequest = new Request(
+    `${BASE_URI}posts/?categories=1&per_page=1`,
+    myInit
+  );
+
+  highlightPost = await fetch(myRequest)
+    .then((response) => response.json())
+    .then((data) => data.pop());
+
+  return highlightPost;
+};
