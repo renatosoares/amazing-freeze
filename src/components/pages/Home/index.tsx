@@ -6,9 +6,9 @@ import Heading from "components/atoms/Heading";
 
 import HeaderTitleStyles from "./HeaderTitle.module.scss";
 import "./styles.scss";
-import { getFirstHighlightPost } from "hooks/posts";
 
-const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
+import { getFirstHighlightPost } from "hooks/posts";
+import { getMediaById } from "hooks/media";
 
 const HeaderTitle = styled.h1``;
 
@@ -25,22 +25,6 @@ const Home = () => {
   const [highlightMedia, setHighlightMedia] = useState({
     source_url: "",
   });
-
-  const getMediaById = async (id = 0, postId = 0) => {
-    const uriMedia = "media";
-    const uriMediaParent = "media?parent=";
-    let fetchUri = `${BASE_URI}${uriMedia}/${id}`;
-
-    if (id === 0) {
-      fetchUri = `${BASE_URI}${uriMediaParent}${postId}`;
-    }
-
-    const media = await fetch(fetchUri)
-      .then((response) => response.json())
-      .then((data) => (id > 0 ? data : data.pop()));
-
-    return media;
-  };
 
   useEffect(() => {
     const fetchDataPost = async () => {
