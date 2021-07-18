@@ -58,6 +58,7 @@ const Home = () => {
           <HeaderTitle className={HeaderTitleStyles.headerTitle}></HeaderTitle>
         </Heading>
       </Hero>
+      <Footer />
     </div>
   );
 };
