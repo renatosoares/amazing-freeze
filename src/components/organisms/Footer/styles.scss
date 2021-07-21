@@ -1,5 +1,15 @@
 .footer {
-  
+  .social-media {
+    .footer-link {
+      color: var(--bs-yellow);
+      text-decoration: none;
+
+      &:hover {
+        color: darken(gold, 25%);
+      }
+    }
+  }
+
   h6 {
     color: #fff;
     margin-top: 0;

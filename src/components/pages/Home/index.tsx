@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Hero from "components/molecules/Hero";
 import Heading from "components/atoms/Heading";
+import Footer from "components/organisms/Footer";
 
 import HeaderTitleStyles from "./HeaderTitle.module.scss";
 import "./styles.scss";

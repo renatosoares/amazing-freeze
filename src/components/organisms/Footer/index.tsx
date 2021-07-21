@@ -3,27 +3,17 @@ import styled from "styled-components";
 
 import Heading from "components/atoms/Heading";
 
-import FooterStyles from './Footer.module.scss'
+import FooterStyles from "./Footer.module.scss";
+import "./styles.scss";
 
-const Root = styled.footer`
-
-`;
+const Root = styled.footer``;
 
 const IconContainer = styled.span`
   margin-right: 8px;
 `;
 
-const FooterLink = styled.a`
-  color: ${(props) => props.theme.colors.primary.main};
-  text-decoration: none;
-
-  &:hover {
-    color: ${(props) => props.theme.colors.primary.dark};
-  }
-`;
-
 const Footer = () => (
-  <Root className={[FooterStyles.footer, 'footer'].join(' ')}>
+  <Root className={[FooterStyles.footer, "footer"].join(" ")}>
     <div className="container">
       <div className="row">
         <div className="col-md-4">
@@ -49,39 +39,39 @@ const Footer = () => (
           </p>
           <p>
             <IconContainer>
-              <FaBuilding />
+              <i className="fas fa-building"></i>
             </IconContainer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quam
             assumenda accusamus voluptatum sint nemo vel voluptates
           </p>
         </div>
-        <div className="col-md-4">
+        <div className="social-media col-md-4">
           <Heading>
             <h6>Redes sociais</h6>
           </Heading>
           <p>
-            <FooterLink target="_blank" href="#">
+            <a className="footer-link" target="_blank" href="facebook.com">
               <IconContainer>
-                <FaFacebookF />
+                <i className="fab fa-facebook-f"></i>
               </IconContainer>
               Facebook
-            </FooterLink>
+            </a>
           </p>
           <p>
-            <FooterLink target="_blank" href="#">
+            <a className="footer-link" target="_blank" href="linkedin.com">
               <IconContainer>
-                <FaLinkedinIn />
+                <i className="fab fa-linkedin-in"></i>
               </IconContainer>
               Linkedin
-            </FooterLink>
+            </a>
           </p>
           <p>
-            <FooterLink target="_blank" href="#">
+            <a className="footer-link" target="_blank" href="twitter.com">
               <IconContainer>
-                <FaTwitter />
+                <i className="fab fa-twitter"></i>
               </IconContainer>
               Twitter
-            </FooterLink>
+            </a>
           </p>
         </div>
       </div>
