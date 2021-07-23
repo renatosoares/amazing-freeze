@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Hero from "components/molecules/Hero";
 import Heading from "components/atoms/Heading";
 import Footer from "components/organisms/Footer";
+import Section from "components/molecules/Section";
 
 import HeaderTitleStyles from "./HeaderTitle.module.scss";
 import "./styles.scss";
@@ -59,6 +60,12 @@ const Home = () => {
           <HeaderTitle className={HeaderTitleStyles.headerTitle}></HeaderTitle>
         </Heading>
       </Hero>
+      <Section inverse>
+        <Heading>
+          <h2>Destaques</h2>
+        </Heading>
+        <ProductGrid products={highlightPosts} />
+      </Section>
       <Footer />
     </div>
   );
