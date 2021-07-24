@@ -1,8 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 //#region CardMediaBody
+
+type CardBodyProps = {
+  children: React.ReactNode;
+};
 
 const StyledBody = styled.div`
   padding: 16px;
@@ -12,21 +15,21 @@ const StyledBody = styled.div`
   }
 `;
 
-export const CardBody = ({ children }) => <StyledBody>{children}</StyledBody>;
-
-CardBody.defaultProps = {
-  children: undefined,
-};
-
-CardBody.propTypes = {
-  children: PropTypes.node,
-};
+export const CardBody = ({ children }: CardBodyProps) => <StyledBody>{children}</StyledBody>;
 
 //#endregion
 
 //#region CardMedia
 
-const StyledMedia = styled.div`
+type StyledMediaProps = {
+  image?: string;
+};
+
+type CardMediaProps = {
+  image?: string;
+};
+
+const StyledMedia = styled.div<StyledMediaProps>`
   display: flex;
   background-image: url(${(props) => props.image});
   background-position: center center;
@@ -34,23 +37,17 @@ const StyledMedia = styled.div`
   height: 270px;
 `;
 
-export const CardMedia = ({ image, children }) => (
-  <StyledMedia image={image}>{children}</StyledMedia>
+export const CardMedia = ({ image }: CardMediaProps) => (
+  <StyledMedia image={image}></StyledMedia>
 );
-
-CardMedia.defaultProps = {
-  image: undefined,
-  children: undefined,
-};
-
-CardMedia.propTypes = {
-  image: PropTypes.string,
-  children: PropTypes.node,
-};
 
 //#endregion
 
 //#region CardMediaDescription
+type CardMediaDescriptionProps = {
+  children: React.ReactNode;
+};
+
 const StyledMediaDescription = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
   padding: 8px 16px;
@@ -68,42 +65,24 @@ const StyledMediaDescription = styled.div`
   }
 `;
 
-export const CardMediaDescription = ({ children }) => (
+export const CardMediaDescription = ({ children }: CardMediaDescriptionProps) => (
   <StyledMediaDescription>{children}</StyledMediaDescription>
 );
-
-CardMediaDescription.defaultProps = {
-  children: undefined,
-};
-
-CardMediaDescription.propTypes = {
-  children: PropTypes.node,
-};
 //#endregion
 
 //#region Card
+type CardProps = {
+  children: React.ReactNode;
+};
 
 const StyledCard = styled.div`
-  background-color: #fff;
-  border-radius: 4px;
-  border: 1px solid ${(props) => props.theme.colors.border};
-  overflow: hidden;
 `;
 
-const Card = ({ children }) => (
-  <StyledCard>
-    <div />
+const Card = ({ children }: CardProps) => (
+  <StyledCard className="card">
     {children}
   </StyledCard>
 );
-
-Card.defaultProps = {
-  children: undefined,
-};
-
-Card.propTypes = {
-  children: PropTypes.node,
-};
 
 export default Card;
 

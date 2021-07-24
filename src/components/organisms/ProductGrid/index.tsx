@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -41,8 +40,6 @@ const ProductGrid = ({ products }: ProductGridProps) => {
                   <Button
                     color="primary"
                     variant="link"
-                    as={Link}
-                    to={`/services/${product.slang}`}
                   >
                     Saiba mais
                   </Button>
@@ -52,18 +49,6 @@ const ProductGrid = ({ products }: ProductGridProps) => {
           </div>
         ))}
       </div>
-      {!showAll && (
-        <Toolbar>
-          <Button
-            variant="outlined"
-            onClick={() => {
-              setShowAll(true);
-            }}
-          >
-            Lista completa de serviços
-          </Button>
-        </Toolbar>
-      )}
     </>
   );
 };

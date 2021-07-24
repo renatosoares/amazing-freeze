@@ -1,6 +1,21 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
+type ButtonWrapperProps = {
+  type?: 'submit' | 'reset' | 'button';
+  children: React.ReactNode;
+  color?: 'default' | 'primary' | 'danger';
+  variant: "default" | "outlined" | "link";
+  // as?: Link;
+};
+
+// ButtonWrapper.defaultProps = {
+//   type: "button",
+//   children: undefined,
+//   color: "default",
+//   variant: "default",
+// };
 
 export const ButtonColors = {
   default: "default",
@@ -14,125 +29,24 @@ export const ButtonsVariants = {
   link: "link",
 };
 
-const getMainColor = ({ theme, color }) => {
-  switch (color) {
-    case ButtonColors.primary:
-      return theme.colors.primary.main;
-    case ButtonColors.danger:
-      return theme.colors.danger.main;
-    default:
-      return "#e0e0e0";
-  }
-};
-
-const getDarkColor = ({ theme, color }) => {
-  switch (color) {
-    case ButtonColors.primary:
-      return theme.colors.primary.dark;
-    case ButtonColors.danger:
-      return theme.colors.danger.dark;
-    default:
-      return "#5a6268";
-  }
-};
-
-const getColorText = ({ theme, color }) => {
-  switch (color) {
-    case ButtonColors.primary:
-      return theme.colors.primary.text;
-    case ButtonColors.danger:
-      return theme.colors.danger.text;
-    default:
-      return "#212121";
-  }
-};
-
-const getOutLinedText = (props) => {
-  if (props.color === ButtonColors.default) {
-    return "#212121";
-  }
-
-  return getMainColor(props);
-};
-
-const getLinkText = (props) => {
-  if (props.color === ButtonColors.default) {
-    return "#757575";
-  }
-
-  return getMainColor(props);
-};
-
-const Button = styled.button`
-  font-size: 1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 12px 36px;
-  cursor: pointer;
-  background-color: ${getMainColor};
-  border: 2px solid ${getMainColor};
-  color: ${getColorText};
-  display: inline-block;
-  text-decoration: none;
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-
-  &:hover:not(:disabled) {
-    background-color: ${getDarkColor};
-    border-color: ${getDarkColor};
-  }
+const Button = styled.button<ButtonWrapperProps>`
 `;
 
-const ButtonOutlined = styled(Button)`
-  background-color: transparent;
-  color: ${getOutLinedText};
-
-  &:hover:not(:disabled) {
-    background-color: transparent;
-    color: ${getDarkColor};
-  }
+const ButtonOutlined = styled(Button)<ButtonWrapperProps>`
 `;
 
-const ButtonLink = styled(Button)`
-  background-color: transparent;
-  border-color: transparent;
-  color: ${getLinkText};
-  padding-left: 0;
-  padding-right: 0;
-
-  &:hover:not(:disabled) {
-    background-color: transparent;
-    border-color: transparent;
-    color: ${getDarkColor};
-  }
+const ButtonLink = styled(Button)<ButtonWrapperProps>`
 `;
 
-const ButtonWrapper = (props) => {
+const ButtonWrapper = (props: ButtonWrapperProps) => {
   switch (props.variant) {
     case ButtonsVariants.outlined:
-      return <ButtonOutlined {...props} />;
+      return <ButtonOutlined {...props} className={`button-${props.variant}`} />;
     case ButtonsVariants.link:
-      return <ButtonLink {...props} />;
+      return <ButtonLink {...props} className={`button-${props.variant}`}/>;
     default:
-      return <Button {...props} />;
+      return <Button {...props} className="button"/>;
   }
-};
-
-ButtonWrapper.defaultProps = {
-  type: "button",
-  children: undefined,
-  color: "default",
-  variant: "default",
-};
-
-ButtonWrapper.propTypes = {
-  type: PropTypes.string,
-  children: PropTypes.node,
-  color: PropTypes.oneOf(Object.values(ButtonColors)),
-  variant: PropTypes.oneOf(Object.values(ButtonsVariants)),
 };
 
 export default ButtonWrapper;

@@ -1,0 +1,51 @@
+.button {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 12px 36px;
+  cursor: pointer;
+  background-color: $yellow;
+  border: 2px solid $yellow;
+  color: $secondary;
+  display: inline-block;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: darken($color: $yellow, $amount: 50);
+    border-color: darken($color: $yellow, $amount: 50);
+  }
+}
+
+.button-outlined {
+  @extend .button;
+
+  background-color: transparent;
+  color: #212121;
+
+  &:hover:not(:disabled) {
+    background-color: transparent;
+    color: darken($color: $secondary, $amount: 50);
+  }
+}
+
+.button-link {
+  @extend .button;
+
+  background-color: transparent;
+  border-color: transparent;
+  color: $yellow;
+  padding-left: 0;
+  padding-right: 0;
+
+  &:hover:not(:disabled) {
+    background-color: transparent;
+    border-color: transparent;
+    color: darken($color: $yellow, $amount: 10);
+  }
+  
+}
