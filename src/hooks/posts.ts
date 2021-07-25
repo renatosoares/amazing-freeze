@@ -1,3 +1,5 @@
+import ApiPostProps from "models/types/ApiPostProps";
+
 const BASE_URI = process.env.REACT_APP_BASE_URI_WP_JSON_API;
 
 type PostsUsePostProps = {
@@ -42,4 +44,23 @@ export const getFirstHighlightPost = async () => {
     .then((data) => data.pop());
 
   return highlightPost;
+};
+
+
+
+export const getPosts = async () => {
+  const highlight = await highlightPosts();
+
+  const posts = highlight.map((post: ApiPostProps) => {
+    return {
+      id: post.id,
+      title: post.title.rendered,
+      slang: post.slug,
+      summary: post.excerpt.rendered,
+      image: "",
+      mediaId: post.featured_media,
+    };
+  });
+
+  return posts;
 };

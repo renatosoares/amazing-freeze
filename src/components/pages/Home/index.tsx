@@ -13,25 +13,24 @@ import "./styles.scss";
 import { getFirstHighlightPost } from "hooks/posts";
 import { getMediaById } from "hooks/media";
 
+import ApiPostProps from "models/types/ApiPostProps";
+
 const HeaderTitle = styled.h1``;
 
-type HighlightPostProps = {
-  id?: number;
-  featured_media?: number;
-  [key: string]: unknown;
-  // title: { rendered: string };
-  // except: { rendered: string };
-};
-
 const Home = () => {
-  const [highlightPost, setHighlightPost] = useState<HighlightPostProps>();
+  const [highlightPost, setHighlightPost] = useState<Object>();
   const [highlightMedia, setHighlightMedia] = useState({
     source_url: "",
   });
 
   useEffect(() => {
     const fetchDataPost = async () => {
-      setHighlightPost(await getFirstHighlightPost());
+      const post = await getFirstHighlightPost();
+
+      console.log('====================================');
+      console.log(post);
+      console.log('====================================');
+      setHighlightPost(post);
     };
 
     fetchDataPost();
