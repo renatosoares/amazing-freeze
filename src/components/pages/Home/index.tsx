@@ -5,7 +5,7 @@ import Hero from "components/molecules/Hero";
 import Heading from "components/atoms/Heading";
 import Footer from "components/organisms/Footer";
 import Section from "components/molecules/Section";
-import ProductGrid from "components/organisms/ProductGrid";
+import PostGrid from "components/organisms/PostGrid";
 
 import HeaderTitleStyles from "./HeaderTitle.module.scss";
 import "./styles.scss";
@@ -54,7 +54,7 @@ const Home = () => {
   let imageHero =
     highlightMedia.source_url || `//via.placeholder.com/136x76.png?text=...`;
 
-  const mockProducts = [{
+  const mockPosts = [{
       id: '1',
       image: '//picsum.photos/id/237/200/300',
       title: 'Lorem ipsum',
@@ -73,7 +73,7 @@ const Home = () => {
         <Heading>
           <h2>Destaques</h2>
         </Heading>
-        <ProductGrid products={mockProducts} />
+        <PostGrid posts={mockPosts} />
       </Section>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-type ProductProps = {
+type PostProps = {
   id: number | string;
   image: string;
   title: string;
@@ -6,4 +6,4 @@ type ProductProps = {
   slang: string;
 };
 
-export default ProductProps;
+export default PostProps;

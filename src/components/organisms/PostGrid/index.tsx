@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import ProductProps from "models/types/ProductProps";
+import PostProps from "models/types/PostProps";
 
 import Card, { CardMedia, CardBody } from "components/atoms/Card";
 import Heading from "components/atoms/Heading";
 import Button from "components/atoms/Button";
 
-type ProductGridProps = {
-  products: ProductProps[];
+type PostGridProps = {
+  posts: PostProps[];
 };
 
 const Toolbar = styled.div`
@@ -17,24 +17,24 @@ const Toolbar = styled.div`
   text-align: center;
 `;
 
-const ProductGrid = ({ products }: ProductGridProps) => {
+const PostGrid = ({ posts }: PostGridProps) => {
   const [showAll, setShowAll] = useState(false);
-  const filteredProducts = showAll ? products : products.slice(0, 3);
+  const filteredPosts = showAll ? posts : posts.slice(0, 3);
 
   return (
     <>
       <div className="row row-cols-md-3">
-        {filteredProducts.map((product) => (
-          <div key={product.id} className="col">
+        {filteredPosts.map((post) => (
+          <div key={post.id} className="col">
             <Card>
-              <CardMedia image={product.image} />
+              <CardMedia image={post.image} />
               <CardBody>
                 <Heading>
-                  <h6 dangerouslySetInnerHTML={{ __html: product.title }}></h6>
+                  <h6 dangerouslySetInnerHTML={{ __html: post.title }}></h6>
                 </Heading>
 
                 <div
-                  dangerouslySetInnerHTML={{ __html: product.summary }}
+                  dangerouslySetInnerHTML={{ __html: post.summary }}
                 ></div>
                 <div>
                   <Button
@@ -53,4 +53,4 @@ const ProductGrid = ({ products }: ProductGridProps) => {
   );
 };
 
-export default ProductGrid;
+export default PostGrid;
