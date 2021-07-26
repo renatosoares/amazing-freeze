@@ -23,7 +23,7 @@ export const usePost = async ({ slang }: PostsUsePostProps) => {
   return post;
 };
 
-export const getFirstHighlightPost = async () => {
+export const getFirstHighlightPost = async (): Promise<ApiPostProps | any> => {
   let highlightPost = {};
   const myHeaders = new Headers();
 
@@ -45,8 +45,6 @@ export const getFirstHighlightPost = async () => {
 
   return highlightPost;
 };
-
-
 
 export const getPosts = async () => {
   const highlight = await highlightPosts();

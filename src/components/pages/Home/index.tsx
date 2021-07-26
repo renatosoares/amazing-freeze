@@ -18,7 +18,7 @@ import ApiPostProps from "models/types/ApiPostProps";
 const HeaderTitle = styled.h1``;
 
 const Home = () => {
-  const [highlightPost, setHighlightPost] = useState<Object>();
+  const [highlightPost, setHighlightPost] = useState<ApiPostProps>();
   const [highlightMedia, setHighlightMedia] = useState({
     source_url: "",
   });
@@ -27,9 +27,6 @@ const Home = () => {
     const fetchDataPost = async () => {
       const post = await getFirstHighlightPost();
 
-      console.log('====================================');
-      console.log(post);
-      console.log('====================================');
       setHighlightPost(post);
     };
 
@@ -53,19 +50,25 @@ const Home = () => {
   let imageHero =
     highlightMedia.source_url || `//via.placeholder.com/136x76.png?text=...`;
 
-  const mockPosts = [{
-      id: '1',
-      image: '//picsum.photos/id/237/200/300',
-      title: 'Lorem ipsum',
-      summary: 'Lorem',
-      slang: 'lorem-ipsum',
-  }]
+  let highlightTitle = highlightPost && highlightPost.title.rendered;
+
+  const mockPosts = [
+    {
+      id: "1",
+      image: "//picsum.photos/id/237/200/300",
+      title: "Lorem ipsum",
+      summary: "Lorem",
+      slang: "lorem-ipsum",
+    },
+  ];
 
   return (
     <div className="home">
       <Hero image={imageHero}>
         <Heading>
-          <HeaderTitle className={HeaderTitleStyles.headerTitle}></HeaderTitle>
+          <HeaderTitle className={HeaderTitleStyles.headerTitle}>
+            {highlightTitle}
+          </HeaderTitle>
         </Heading>
       </Hero>
       <Section inverse>
