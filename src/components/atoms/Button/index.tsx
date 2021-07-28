@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type ButtonWrapperProps = {
@@ -8,7 +7,8 @@ type ButtonWrapperProps = {
   color?: "default" | "primary" | "danger";
   variant: "default" | "outlined" | "link";
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
-  // as?: Link;
+  as?: any;
+  to?: string;
 };
 
 // ButtonWrapper.defaultProps = {

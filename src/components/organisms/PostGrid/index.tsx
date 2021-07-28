@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,12 @@ const PostGrid = ({ posts }: PostGridProps) => {
 
                 <div dangerouslySetInnerHTML={{ __html: post.summary }}></div>
                 <div>
-                  <Button color="primary" variant="link">
+                  <Button
+                    color="primary"
+                    variant="link"
+                    as={Link}
+                    to={`/services/${post.slang}`}
+                  >
                     Saiba mais
                   </Button>
                 </div>
