@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,7 @@ const PostGrid = ({ posts }: PostGridProps) => {
 
   return (
     <>
-      <div className="row row-cols-md-3">
+      <div className="row row-cols-1 row-cols-md-3">
         {filteredPosts.map((post) => (
           <div key={post.id} className="col">
             <Card>
@@ -33,14 +33,9 @@ const PostGrid = ({ posts }: PostGridProps) => {
                   <h6 dangerouslySetInnerHTML={{ __html: post.title }}></h6>
                 </Heading>
 
-                <div
-                  dangerouslySetInnerHTML={{ __html: post.summary }}
-                ></div>
+                <div dangerouslySetInnerHTML={{ __html: post.summary }}></div>
                 <div>
-                  <Button
-                    color="primary"
-                    variant="link"
-                  >
+                  <Button color="primary" variant="link">
                     Saiba mais
                   </Button>
                 </div>

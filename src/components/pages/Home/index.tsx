@@ -14,11 +14,17 @@ import { getFirstHighlightPost } from "hooks/posts";
 import { getMediaById } from "hooks/media";
 
 import ApiPostProps from "models/types/ApiPostProps";
+import PostProps from "models/types/PostProps";
+
+type HomeProps = {
+  posts: PostProps[];
+};
 
 const HeaderTitle = styled.h1``;
 
-const Home = () => {
+const Home = ({ posts }: HomeProps) => {
   const [highlightPost, setHighlightPost] = useState<ApiPostProps>();
+  const [highlightPosts, setHighlightPosts] = useState<PostProps[]>([]);
   const [highlightMedia, setHighlightMedia] = useState({
     source_url: "",
   });
@@ -47,20 +53,22 @@ const Home = () => {
     }
   }, [highlightPost]);
 
+  useEffect(() => {
+    if (posts.length > 0) {
+      posts.forEach(async (post) => {
+        const media = await getMediaById(post.mediaId, post.id);
+        setHighlightPosts((prevHighlights) => [
+          ...prevHighlights,
+          { ...post, image: media.source_url },
+        ]);
+      });
+    }
+  }, [posts]);
+
   let imageHero =
     highlightMedia.source_url || `//via.placeholder.com/136x76.png?text=...`;
 
   let highlightTitle = highlightPost && highlightPost.title.rendered;
-
-  const mockPosts = [
-    {
-      id: "1",
-      image: "//picsum.photos/id/237/200/300",
-      title: "Lorem ipsum",
-      summary: "Lorem",
-      slang: "lorem-ipsum",
-    },
-  ];
 
   return (
     <div className="home">
@@ -75,7 +83,14 @@ const Home = () => {
         <Heading>
           <h2>Destaques</h2>
         </Heading>
-        <PostGrid posts={mockPosts} />
+        {highlightPosts.length === 0 && (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        )}
+        {highlightPosts.length > 0 && <PostGrid posts={highlightPosts} />}
       </Section>
       <Footer />
     </div>
