@@ -44,6 +44,18 @@ const PostGrid = ({ posts }: PostGridProps) => {
           </div>
         ))}
       </div>
+      {!showAll && (
+        <Toolbar>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setShowAll(true);
+            }}
+          >
+            Lista completa das postagens
+          </Button>
+        </Toolbar>
+      )}
     </>
   );
 };

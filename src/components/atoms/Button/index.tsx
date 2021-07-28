@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 type ButtonWrapperProps = {
-  type?: 'submit' | 'reset' | 'button';
+  type?: "submit" | "reset" | "button";
   children: React.ReactNode;
-  color?: 'default' | 'primary' | 'danger';
+  color?: "default" | "primary" | "danger";
   variant: "default" | "outlined" | "link";
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
   // as?: Link;
 };
 
@@ -29,23 +30,22 @@ export const ButtonsVariants = {
   link: "link",
 };
 
-const Button = styled.button<ButtonWrapperProps>`
-`;
+const Button = styled.button<ButtonWrapperProps>``;
 
-const ButtonOutlined = styled(Button)<ButtonWrapperProps>`
-`;
+const ButtonOutlined = styled(Button)<ButtonWrapperProps>``;
 
-const ButtonLink = styled(Button)<ButtonWrapperProps>`
-`;
+const ButtonLink = styled(Button)<ButtonWrapperProps>``;
 
 const ButtonWrapper = (props: ButtonWrapperProps) => {
   switch (props.variant) {
     case ButtonsVariants.outlined:
-      return <ButtonOutlined {...props} className={`button-${props.variant}`} />;
+      return (
+        <ButtonOutlined {...props} className={`button-${props.variant}`} />
+      );
     case ButtonsVariants.link:
-      return <ButtonLink {...props} className={`button-${props.variant}`}/>;
+      return <ButtonLink {...props} className={`button-${props.variant}`} />;
     default:
-      return <Button {...props} className="button"/>;
+      return <Button {...props} className="button" />;
   }
 };
 
