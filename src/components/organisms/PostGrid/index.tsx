@@ -39,7 +39,7 @@ const PostGrid = ({ posts }: PostGridProps) => {
                     color="primary"
                     variant="link"
                     as={Link}
-                    to={`/news/${post.slang}`}
+                    to={`/${post.slang}`}
                   >
                     Saiba mais
                   </Button>
