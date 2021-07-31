@@ -18,7 +18,7 @@ const Footer = () => (
       <div className="row">
         <div className="col-md-4">
           <Heading>
-            <h6>Perfect Photography</h6>
+            <h6>Amazing Freeze</h6>
           </Heading>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus quam
