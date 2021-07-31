@@ -2,21 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Error from "components/pages/Error";
+import PostDetailPage from "components/pages/PostDetail";
 import NotFoundImage from "draws/About";
 
 import { useScrollToTop } from "hooks/scroll";
 import { usePost as UsePost } from "hooks/posts";
+import PostProps from "models/types/PostProps";
 
-const ProductDetail = () => {
+const PostDetail = () => {
   useScrollToTop();
   const [hasPost, setHasPost] = useState(false);
-  const [postSerialize, setPostSerialize] = useState({
+  const [postSerialize, setPostSerialize] = useState<PostProps>({
     id: 0,
-    title: "",
-    slang: "",
-    summary: "",
     image: "",
-    mediaId: "",
+    title: "",
+    summary: "",
+    slang: "",
+    mediaId: 0,
   });
 
   const { slang }: { slang: string } = useParams();
@@ -52,7 +54,7 @@ const ProductDetail = () => {
     );
   }
 
-  return <div>Post Detail</div>;
+  return <PostDetailPage post={postSerialize}></PostDetailPage>;
 };
 
-export default ProductDetail;
+export default PostDetail;
